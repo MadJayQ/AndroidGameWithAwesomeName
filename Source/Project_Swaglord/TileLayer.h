@@ -64,11 +64,7 @@ private:
 	void NextSpawn(float delay);
 	void SpawnTile_Delegate();
 
-<<<<<<< HEAD
 	FORCEINLINE void UpdateGameOrigin(FTransform newTransform)
-=======
-	__forceinline void UpdateGameOrigin(FTransform newTransform)
->>>>>>> 119f64589d1286a86dfdbd66ad8bce2b77c9aff3
 	{
 		UWorld* world = GetWorld();
 		check(world);
