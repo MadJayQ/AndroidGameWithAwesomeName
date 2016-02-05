@@ -7,6 +7,9 @@
 #include "GameFramework/Actor.h"
 #include "TileLayer.generated.h"
 
+
+class ATile;
+
 UCLASS()
 class PROJECT_SWAGLORD_API ATileLayer : public AActor
 {
@@ -49,6 +52,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Spawning")
 	void SpawnTileEvent();
+
+
+	void CreateUniqueTimer(float delay, FTimerDelegate Delegate, bool bLooping);
+	void CleanupDeadTimers();
 
 
 private:

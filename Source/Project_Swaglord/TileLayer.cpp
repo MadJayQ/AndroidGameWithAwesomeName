@@ -4,7 +4,6 @@
 #include "TileLayer.h"
 #include "Engine.h"
 
-
 // Sets default values
 ATileLayer::ATileLayer()
 {
@@ -47,10 +46,32 @@ void ATileLayer::SpawnTile(float numTiles)
 
 }
 
+
+
+void ATileLayer::CreateUniqueTimer(float delay, FTimerDelegate Delegate,  bool bLooping)
+{
+	FTimerHandle handle;
+	CleanupDeadTimers();
+
+	GetWorldTimerManager().SetTimer(handle, Delegate, delay, bLooping);
+	ActiveTimers.Add(handle);
+}
+
+
 void ATileLayer::NextSpawn(float delay)
 {
 	FTimerHandle UniqueHandle;
 	FTimerDelegate SpawnDelegate = FTimerDelegate::CreateUObject(this, &ATileLayer::SpawnTile, 5.f);
+	
+	CleanupDeadTimers();
+
+	GetWorldTimerManager().SetTimer(UniqueHandle, SpawnDelegate, delay, false);
+	ActiveTimers.Add(UniqueHandle);
+
+}
+
+void ATileLayer::CleanupDeadTimers()
+{
 	for (int i = 0; i < ActiveTimers.Num(); i++)
 	{
 		auto handle = ActiveTimers[i];
@@ -63,8 +84,4 @@ void ATileLayer::NextSpawn(float delay)
 			}
 		}
 	}
-
-	GetWorldTimerManager().SetTimer(UniqueHandle, SpawnDelegate, delay, false);
-	ActiveTimers.Add(UniqueHandle);
-
 }
