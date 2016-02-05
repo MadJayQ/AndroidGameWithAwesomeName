@@ -20,7 +20,7 @@ void ATileLayer::BeginPlay()
 
 	LastSpawnTransform = GetTransform();
 	
-	SpawnTile(5);
+	SpawnTile(InitialSpawnAmount);
 }
 
 // Called every frame
@@ -32,11 +32,11 @@ void ATileLayer::Tick( float DeltaTime )
 
 void ATileLayer::SpawnTile(float numTiles)
 {
-	for (int i = 1; i < numTiles; i++)
+	for (int i = 1; i <= numTiles; i++)
 	{
 		SpawnTileEvent();
 	}
-	NextSpawn(SpawnDelay);
+	//NextSpawn(SpawnDelay);
 	UpdateGameOrigin(LastSpawnTransform);
 	FVector SpawnLocation, SpawnScale;
 	FRotator SpawnRotation;
@@ -44,6 +44,7 @@ void ATileLayer::SpawnTile(float numTiles)
 	SpawnScale = LastSpawnTransform.GetScale3D();
 	SpawnRotation = LastSpawnTransform.GetRotation().Rotator();
 	LastSpawnTransform = FTransform(SpawnRotation, SpawnLocation, SpawnScale);
+
 }
 
 void ATileLayer::NextSpawn(float delay)

@@ -33,7 +33,13 @@ public:
 	float SpawnDelay = 2.5f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-	float SpawnAmount = 5;
+	float SpawnAmount = 3.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+	float InitialSpawnAmount = 5.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+	float TilesRemainingBeforeSpawn = 3.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Timer")
 	TArray<FTimerHandle> ActiveTimers;
