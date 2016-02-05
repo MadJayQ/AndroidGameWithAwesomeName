@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Tile.generated.h"
 
+
+class ATileLayer;
+
 UCLASS()
 class PROJECT_SWAGLORD_API ATile : public AActor
 {
@@ -14,6 +17,9 @@ class PROJECT_SWAGLORD_API ATile : public AActor
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 	class UArrowComponent* AttachPoint; //THIS MUST BE SET IN THE DERIVED BLUEPRINT DURING THE CONSTRUCTION SCRIPT!!!!!!!! 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+	class ATileLayer* OwnerLayer;
 	
 public:	
 	// Sets default values for this actor's properties
